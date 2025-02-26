@@ -4,6 +4,7 @@ import streamlit as st
 import tempfile
 from datetime import datetime
 import glob
+from dotenv import load_dotenv
 import openai
 from langgraph.prebuilt import create_react_agent
 from langgraph.checkpoint.memory import MemorySaver
@@ -19,10 +20,10 @@ from langchain.document_loaders import DirectoryLoader
 import sqlite3
 import pandas as pd
 
+load_dotenv()
+openai_api_key = os.getenv("OPENAI_API_KEY")
+openai.api_key = openai_api_key
 
-openai.api_key = "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"
-
-os.environ["OPENAI_API_KEY"] = openai.api_key
 tmp_directory = tempfile.mkdtemp()
 
 class HelpBot:
